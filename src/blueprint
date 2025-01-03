@@ -1,0 +1,21 @@
+src/
+├── components/
+│   ├── TaskForm.jsx      # Component to add/edit tasks
+│   ├── TaskList.jsx      # Component to display filtered tasks
+│   ├── TaskItem.jsx      # Component for individual task
+│
+├── redux/
+│   ├── actions/
+│   │   ├── taskActions.js  # Action creators for tasks
+│   ├── reducers/
+│   │   ├── taskReducer.js  # Reducer for task state
+│   ├── store.js            # Configure Redux store
+│
+├── services/
+│   ├── api.js             # API calls (mocked or real)
+│
+├── utils/
+│   ├── localStorage.js    # Helpers for saving/loading state from localStorage
+│
+├── App.jsx                # Main app component
+└── index.js               # Entry point
