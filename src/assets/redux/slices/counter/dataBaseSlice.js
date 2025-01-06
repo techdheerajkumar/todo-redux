@@ -10,9 +10,14 @@ export const dataBaseSlice = createSlice({
         deleteItem: (state, action) =>{
             const idToRemove = action.payload
             return state.filter(a => a.id !== idToRemove);
-        }
+        },
+        updateItem: (state, action) =>{
+            console.log(state)
+            console.log(action.payload)
+            state.splice(state.id, 1, action.payload)
+        }   
     }
 })
 
-export const {storeData, deleteItem} = dataBaseSlice.actions
+export const {storeData, deleteItem, updateItem} = dataBaseSlice.actions
 export default dataBaseSlice.reducer
