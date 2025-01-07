@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteItem, updateItem } from "../redux/slices/counter/dataBaseSlice";
-import { setInputValue } from "../redux/slices/counter/userDataSlice";
 const TaskView = () => {
-  let updatedData = useSelector((state) => state.userInput);
+  let [updatedData, setUpdateData] = useState({
+    firstName: '',
+    lastName: '',
+    description:'',
+    id:null
+  });
   const [editingId, setEditingId] = useState("");
   const database = useSelector((state) => state.dataBase); // Reading value from redux state use 'useSelector'
   const dispatch = useDispatch();
@@ -17,12 +21,25 @@ const TaskView = () => {
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    dispatch(setInputValue({ name, value })); //To be continued...
+    setUpdateData((prev)=>({
+        ...prev,
+        [name]: value
+    }));
   };
   const clickHandler = (e) => {    
     e.preventDefault();
-    dispatch(updateItem(updatedData))
+    const withId = {
+        ...updatedData,
+        id: editingId
+    }
+    dispatch(updateItem(withId))
     setEditingId(null)
+    setUpdateData({
+        firstName: '',
+        lastName: '',
+        description:'',
+        id:null
+      })
   };
   return (
     <>

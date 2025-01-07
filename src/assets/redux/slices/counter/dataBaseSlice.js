@@ -12,9 +12,12 @@ export const dataBaseSlice = createSlice({
             return state.filter(a => a.id !== idToRemove);
         },
         updateItem: (state, action) =>{
-            console.log(state)
-            console.log(action.payload)
-            state.splice(state.id, 1, action.payload)
+            const index = state.findIndex(item => item.id === action.payload.id);
+            if (index !== -1) {
+                state[index] = action.payload;
+            } else {
+                console.log("Item with the given ID not found.");
+            }
         }   
     }
 })
